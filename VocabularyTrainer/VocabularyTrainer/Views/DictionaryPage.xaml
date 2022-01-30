@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VocabularyTrainer.Views.DictionaryPage"
+             xmlns:vm="clr-namespace:VocabularyTrainer.ViewModels"
+             xmlns:dg="clr-namespace:Xamarin.Forms.DataGrid;assembly=Xamarin.Forms.DataGrid"
+             Title="{Binding Title}"
+             BackgroundImage="Background.png">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="icon_save.png"  Command ="{Binding SaveCommand}"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.BindingContext>
+        <vm:DictionaryViewModel />
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">Blue</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    
+        
+        <StackLayout>
+            <ScrollView >
+                 <dg:DataGrid 
+                      ItemsSource="{Binding Words}" 
+                      SelectedItem="{Binding SelectedWord}"
+                      RowHeight="50" 
+                      HeaderHeight="50" 
+                      BorderColor="LightYellow" 
+                      HeaderBackground="Green"
+                      HeaderTextColor="#FFFFFF"
+                      Background="Background.png">
+                
+                     <dg:DataGrid.Columns>
+                         <dg:DataGridColumn Title="Original Word" PropertyName="OriginalWord" HorizontalContentAlignment="Center"/>
+                         
+                         
+                         <dg:DataGridColumn Title="Translation" PropertyName="Translation" HorizontalContentAlignment="Center"/>
+                     </dg:DataGrid.Columns>
+                 </dg:DataGrid>
+
+        </ScrollView>
+        <Frame HasShadow ="True" 
+               IsClippedToBounds="False" 
+               CornerRadius="30" 
+               Padding="0,0,0,0" 
+               HorizontalOptions="End"  
+               Margin="0,0,20,15" 
+               MinimumHeightRequest="50"
+               HeightRequest="50" 
+               MinimumWidthRequest="50" 
+               WidthRequest="50" 
+               VerticalOptions="EndAndExpand">
+            
+                <Button Text="+" Padding="0,0,0,2" Command="{Binding AddCommand}" FontSize="Large"  FontAttributes="Bold" CornerRadius="30" 
+                     >
+            
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="1,0">
+                            <GradientStop Color="YellowGreen" Offset="0.1" />
+                           <GradientStop Color="Yellow" Offset="1.0" />
+                     </LinearGradientBrush>
+                    </Button.Background>
+             </Button>
+        </Frame>
+    </StackLayout>
+
+
+
+</ContentPage>

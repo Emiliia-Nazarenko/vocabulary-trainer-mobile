@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VocabularyTrainer.Views.NewItemPage"
+             Shell.PresentationMode="ModalAnimated"
+             Title="New Item"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+              BackgroundImage="Background.png">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="TextColor" Value="DarkBlue"/>
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="HorizontalOptions" Value="Fill"/>
+                <Setter Property="TextColor" Value="DarkBlue"/>
+                <Setter Property="CornerRadius" Value="20" />
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="ClearButtonVisibility" Value ="WhileEditing"/>
+                <Setter Property="Keyboard" Value="Default"/>
+                <Setter Property="IsSpellCheckEnabled" Value="False"/>
+                <Setter Property="TextColor" Value="#0F0A49"/>
+            </Style>
+            <Style TargetType="Frame">
+                <Setter Property="HasShadow" Value="True" />
+                <Setter Property="CornerRadius" Value="20" />
+                <Setter Property="Padding" Value="0" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+              <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="60"/>
+                </Grid.RowDefinitions>
+
+            <StackLayout Grid.Row="1" Spacing="3" Padding="15" VerticalOptions="Center" InputTransparent="False" HorizontalOptions="Fill">
+                <Label Text="Word"/>
+                <Entry Text="{Binding Text}"/>
+                <Label Text="Translation"/>
+                <Entry Text="{Binding Description}" />
+                <StackLayout Orientation="Vertical" Spacing="10">
+                    <Frame>
+                        <Button Text="Save" Command="{Binding SaveCommand}">
+                            <Button.Background>
+                                <LinearGradientBrush EndPoint="1,0">
+                                    <GradientStop Color="YellowGreen" Offset="0.1" />
+                                    <GradientStop Color="Yellow" Offset="1.0" />
+                                </LinearGradientBrush>
+                            </Button.Background>
+                        </Button>
+                    </Frame>
+
+                </StackLayout>
+            </StackLayout>
+        </Grid>
+        </ContentPage.Content>
+    
+</ContentPage>
