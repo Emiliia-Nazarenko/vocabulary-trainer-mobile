@@ -13,7 +13,7 @@ namespace VocabularyTrainer.ViewModels
 
 		public ObservableCollection<Word> Words { get; } = new ObservableCollection<Word>();
 		public Command AddCommand { get; }
-		public Command DeleteCommand { get; }
+		public Command DeleteCommand { get; private set; }
 		public Command EditCommand { get; }
 
 
@@ -32,11 +32,20 @@ namespace VocabularyTrainer.ViewModels
 		{
 
 		}
-
+		bool isMenuItemEnabled = false;
+		public bool IsMenuItemEnabled
+		{
+			get { return isMenuItemEnabled; }
+			set
+			{
+				isMenuItemEnabled = value;
+				DeleteCommand.ChangeCanExecute();
+			}
+		}
 		public DictionaryViewModel()
 		{
 			Title = "Dictionary";
-			DeleteCommand = new Command(DeleteCommandAction, () => SelectedWord != null);
+			DeleteCommand = new Command(DeleteCommandAction, () => isMenuItemEnabled);
 			EditCommand = new Command(EditCommandAction, () => SelectedWord != null);
 			AddCommand = new Command(AddCommandAction);
 
@@ -67,7 +76,7 @@ namespace VocabularyTrainer.ViewModels
 
 		public async void EditCommandAction()
 		{
-			//await Shell.Current.Navigation.PushAsync(new EditItemPage(SelectedWord));
+			await Shell.Current.Navigation.PushAsync(new NewItemPage(SelectedWord));
 		}
 
 		public async void AddCommandAction()

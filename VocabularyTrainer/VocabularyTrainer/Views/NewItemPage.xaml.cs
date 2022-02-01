@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using VocabularyTrainer.Data;
 using VocabularyTrainer.Models;
 using VocabularyTrainer.ViewModels;
 using Xamarin.Forms;
@@ -16,6 +17,11 @@ namespace VocabularyTrainer.Views
 		{
 			InitializeComponent();
 			BindingContext = new NewItemViewModel();
+		}
+		public NewItemPage(Word word)
+		{
+			InitializeComponent();
+			BindingContext = new NewItemViewModel(word);
 		}
 	}
 }

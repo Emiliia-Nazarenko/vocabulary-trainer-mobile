@@ -42,12 +42,11 @@
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell>
+                        <ViewCell Tapped="ViewCell_Tapped" >
                             <ViewCell.ContextActions>
-                                <MenuItem Text="Delete Item">
-                                </MenuItem>
-                                <MenuItem Text="Delete Item">
-                                </MenuItem>
+                                <MenuItem IconImageSource="icon_edit.png" />
+                                <MenuItem IconImageSource="icon_delete.png" Command="{Binding DeleteCommand}" CommandParameter="{Binding SelectedWord}"/>
+                                
                             </ViewCell.ContextActions>
                             <Grid BackgroundColor="Yellow">
                                 <Grid.ColumnDefinitions>

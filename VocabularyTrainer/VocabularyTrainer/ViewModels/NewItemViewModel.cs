@@ -28,6 +28,15 @@ namespace VocabularyTrainer.ViewModels
 			SaveCommand = new Command(OnSave, ValidateSave);
 			this.PropertyChanged += NewItemViewModel_PropertyChanged;
 		}
+		Word _word;
+		
+		public NewItemViewModel(Word word)
+		{
+			SaveCommand = new Command(OnSave, ValidateSave);
+			Text = word.OriginalWord;
+			Description = word.Translation;
+			this.PropertyChanged += NewItemViewModel_PropertyChanged;
+		}
 
 		private void NewItemViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
 		{
