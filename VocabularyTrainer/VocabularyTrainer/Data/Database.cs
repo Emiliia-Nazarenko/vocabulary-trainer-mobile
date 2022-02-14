@@ -35,17 +35,14 @@ namespace VocabularyTrainer.Data
 		public async Task<int> SaveWordAsync(Word word)
 		{
 			var result = await _database.InsertAsync(word).ConfigureAwait(false);
-
 			if (WordsUpdated is not null)
 				WordsUpdated(this, new EventArgs());
-
 			return result;
 		}
 
 		public async Task DeleteWordAsync(int id)
 		{
 			await _database.DeleteAsync(id).ConfigureAwait(false);
-
 			if (WordsUpdated is not null)
 				WordsUpdated(this, new EventArgs());
 		}
@@ -53,7 +50,6 @@ namespace VocabularyTrainer.Data
 		public async Task UpdateWordAsync(Word word)
 		{
 			await _database.UpdateAsync(word).ConfigureAwait(false);
-
 			if (WordsUpdated is not null)
 				WordsUpdated(this, new EventArgs());
 		}

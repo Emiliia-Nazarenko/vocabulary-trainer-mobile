@@ -9,7 +9,6 @@ namespace VocabularyTrainer.ViewModels
 	{
 		public ObservableCollection<Word> ListOfWordsBuffer;
 		public Command SaveCommand { get; }
-
 		private string _text;
 		public string Text
 		{
@@ -28,7 +27,6 @@ namespace VocabularyTrainer.ViewModels
 			SaveCommand = new Command(OnSave, ValidateSave);
 			this.PropertyChanged += NewItemViewModel_PropertyChanged;
 		}
-		Word _word;
 		
 		public NewItemViewModel(Word word)
 		{
@@ -58,9 +56,7 @@ namespace VocabularyTrainer.ViewModels
 					OriginalWord = Text,
 					Translation = Description
 				};
-
 				await App.DB.SaveWordAsync(word);
-
 				Text = string.Empty;
 				Description = string.Empty;
 			}

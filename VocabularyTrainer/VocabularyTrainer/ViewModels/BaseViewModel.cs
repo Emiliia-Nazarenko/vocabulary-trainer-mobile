@@ -2,17 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using VocabularyTrainer.Models;
-using VocabularyTrainer.Services;
-using Xamarin.Forms;
 
 namespace VocabularyTrainer.ViewModels
 {
 	public class BaseViewModel : INotifyPropertyChanged
 	{
-		public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
 		private readonly Dictionary<string, object> _propertyValues = new Dictionary<string, object>();
-
 
 		bool isBusy = false;
 		public bool IsBusy

@@ -11,25 +11,21 @@ namespace VocabularyTrainer.ViewModels
 {
 	public class LearningViewModel : BaseViewModel
 	{
-
+		int id;
+		public ObservableCollection<Word> ListOfWordsBuffer;
+		List<string[]> LearnedWords = new List<string[]>();
 		public Command NextCardCommand { get; }
 		public Command PreviousCardCommand { get; }
 		public Command SwipeLeftCommand { get; }
 		public Command SwipeRightCommand { get; }
 		public Command BackCommand { get; }
-		public ObservableCollection<Word> ListOfWordsBuffer;
-
+		public bool ReversedMode { get; set; } = true;
 		ICommand turnCardCommand;
 		public ICommand TurnCardCommand
 		{
 			get { return turnCardCommand; }
 		}
-
-		public bool ReversedMode { get; set; } = true;
-
-		List<string[]> LearnedWords = new List<string[]>();
 		string pinNo = "Start";
-
 		public string WordOnCard
 		{
 			get { return pinNo; }
@@ -39,7 +35,6 @@ namespace VocabularyTrainer.ViewModels
 				OnPropertyChanged();
 			}
 		}
-
 		string cardCo = "#FAFA8F";
 		public string CardColor
 		{
@@ -50,7 +45,6 @@ namespace VocabularyTrainer.ViewModels
 				OnPropertyChanged();
 			}
 		}
-
 		int currentWord = 0;
 		public int CurrentWord
 		{
@@ -62,7 +56,6 @@ namespace VocabularyTrainer.ViewModels
 			}
 		}
 		private static Random rnd = new Random();
-
 		public static List<T> Shuffle<T>(List<T> list)
 		{
 			return list.OrderBy(x => rnd.Next()).ToList();
@@ -76,7 +69,6 @@ namespace VocabularyTrainer.ViewModels
 			SwipeRightCommand = new Command(NextCard);
 			BackCommand = new Command(BackCommandAction);
 
-
 			ListOfWordsBuffer = new ObservableCollection<Word>(App.DB.GetWordsAsync().Result);
 			foreach (Word w in ListOfWordsBuffer)
 			{
@@ -86,7 +78,6 @@ namespace VocabularyTrainer.ViewModels
 			WordOnCard = LearnedWords[0][0];
 		}
 
-		int id;
 		void TurnCard()
 		{
 			id = ReversedMode ? 0 : 1;
@@ -118,8 +109,6 @@ namespace VocabularyTrainer.ViewModels
 			CardColor = "#FAFA8F";
 		}
 
-
-
 		private async void BackCommandAction()
 		{
 			await Shell.Current.GoToAsync("..");
@@ -134,7 +123,5 @@ namespace VocabularyTrainer.ViewModels
 			}
 			return result;
 		}
-
 	}
-
 }

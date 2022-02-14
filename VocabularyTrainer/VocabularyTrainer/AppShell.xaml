@@ -30,9 +30,11 @@
     </Shell.Resources>
 
     <TabBar>
-        <ShellContent Icon="icon_feed.png"  Route="DictionaryPage"  ContentTemplate="{DataTemplate local:DictionaryPage}"  />
-        <ShellContent Icon="icon_Learn.png" ContentTemplate="{DataTemplate local:LearningPage}" />
-        
+        <ShellContent Icon="icon_feed.png"  
+                      Route="DictionaryPage"  
+                      ContentTemplate="{DataTemplate local:DictionaryPage}"  />
+        <ShellContent Icon="icon_Learn.png" 
+                      ContentTemplate="{DataTemplate local:LearningPage}" />
     </TabBar>
 
     <!--

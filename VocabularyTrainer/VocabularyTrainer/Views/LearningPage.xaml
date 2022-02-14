@@ -19,25 +19,34 @@
         </Grid.RowDefinitions>
 
         <ContentView Grid.Row="0">
-            <Switch IsToggled="{Binding ReversedMode}" OnColor="Pink" ThumbColor="DarkMagenta" Margin="0,20,20,0" />
+            <Switch IsToggled="{Binding ReversedMode}" 
+                    OnColor="Pink" 
+                    ThumbColor="DarkMagenta" 
+                    Margin="0,20,20,0"/>
         </ContentView>
 
-
-        <ContentView Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center">
+        <ContentView Grid.Row="2" 
+                     HorizontalOptions="Center" 
+                     VerticalOptions="Center">
             <ContentView.GestureRecognizers>
-                <SwipeGestureRecognizer Direction="Left" Command ="{Binding SwipeLeftCommand}"/>
-                <SwipeGestureRecognizer Direction="Right" Command ="{Binding SwipeRightCommand}"/>
+                <SwipeGestureRecognizer Direction="Left" 
+                                        Command ="{Binding SwipeLeftCommand}"/>
+                <SwipeGestureRecognizer Direction="Right" 
+                                        Command ="{Binding SwipeRightCommand}"/>
                 <TapGestureRecognizer Command="{Binding TurnCardCommand}"/>
             </ContentView.GestureRecognizers>
-            <Frame HasShadow="True" Padding="0" CornerRadius="25" BackgroundColor="{Binding CardColor}">
-                <Label WidthRequest="350" HeightRequest="200" 
+            <Frame HasShadow="True" 
+                   Padding="0" 
+                   CornerRadius="25" 
+                   BackgroundColor="{Binding CardColor}">
+                <Label WidthRequest="350" 
+                       HeightRequest="200" 
                    HorizontalTextAlignment="Center"
                    VerticalTextAlignment="Center"
                    Text="{Binding WordOnCard}" 
                    TextColor="DarkBlue"
                    FontSize="Large" 
-                   FontAttributes="Bold"
-                />
+                   FontAttributes="Bold"/>
             </Frame>
         </ContentView>
     </Grid>

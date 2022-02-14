@@ -1,4 +1,5 @@
 ﻿
+using Newtonsoft.Json;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using VocabularyTrainer.Data;
@@ -10,13 +11,20 @@ namespace VocabularyTrainer.ViewModels
 {
 	public class DictionaryViewModel : BaseViewModel
 	{
-
 		public ObservableCollection<Word> Words { get; } = new ObservableCollection<Word>();
 		public Command AddCommand { get; }
 		public Command DeleteCommand { get; private set; }
 		public Command EditCommand { get; }
-
-
+		bool isMenuItemEnabled = false;
+		public bool IsMenuItemEnabled
+		{
+			get { return isMenuItemEnabled; }
+			set
+			{
+				isMenuItemEnabled = value;
+				DeleteCommand.ChangeCanExecute();
+			}
+		}
 		public Word SelectedWord
 		{
 			get => GetValue<Word>();
@@ -28,30 +36,21 @@ namespace VocabularyTrainer.ViewModels
 			}
 		}
 
-		public void OnAppearing()
-		{
-
-		}
-		bool isMenuItemEnabled = false;
-		public bool IsMenuItemEnabled
-		{
-			get { return isMenuItemEnabled; }
-			set
-			{
-				isMenuItemEnabled = value;
-				DeleteCommand.ChangeCanExecute();
-			}
-		}
 		public DictionaryViewModel()
 		{
 			Title = "Dictionary";
-			DeleteCommand = new Command(DeleteCommandAction, () => isMenuItemEnabled);
+
+			DeleteCommand = new Command(DeleteCommandAction, () => SelectedWord != null);
 			EditCommand = new Command(EditCommandAction, () => SelectedWord != null);
 			AddCommand = new Command(AddCommandAction);
 
 			Task.Run(() => ReloadWordsAsync());
-
 			App.DB.WordsUpdated += DB_WordsUpdated;
+		}
+
+		public void DownloadAction()
+		{
+			string jsonString = JsonConvert.SerializeObject(Words, Formatting.Indented);
 		}
 
 		private void DB_WordsUpdated(object sender, System.EventArgs e)
@@ -85,6 +84,8 @@ namespace VocabularyTrainer.ViewModels
 
 		}
 
-
+		public void OnAppearing()
+		{
+		}
 	}
 }
