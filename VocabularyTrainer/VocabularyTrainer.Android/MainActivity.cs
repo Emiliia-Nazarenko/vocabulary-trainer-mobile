@@ -1,7 +1,7 @@
-﻿;
-using Android.Content.PM;
+﻿using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
+using Android.App;
 
 namespace VocabularyTrainer.Droid
 {
